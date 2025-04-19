@@ -35,6 +35,20 @@ export default function DashboardPage() {
 
   return (
     <MainLayout>
+      <div className="fixed left-0 top-1/2 transform -translate-y-1/2 z-10">
+        <div id="frame" style={{width:'160px', height:'auto'}}>
+          <iframe data-aa='2390939' src='//ad.a-ads.com/2390939?size=160x600' style={{width:'160px', height:'600px', border:'0px', padding:'0', overflow:'hidden', backgroundColor: 'transparent'}}></iframe>
+          <a style={{display: 'block', textAlign: 'right', fontSize: '12px'}} id="preview-link" href="https://aads.com/campaigns/new/?source_id=2390939&source_type=ad_unit&partner=2390939">Advertise here</a>
+        </div>
+      </div>
+      
+      <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-10">
+        <div id="frame" style={{width:'160px', height:'auto'}}>
+          <iframe data-aa='2390940' src='//ad.a-ads.com/2390940?size=160x600' style={{width:'160px', height:'600px', border:'0px', padding:'0', overflow:'hidden', backgroundColor: 'transparent'}}></iframe>
+          <a style={{display: 'block', textAlign: 'right', fontSize: '12px'}} id="preview-link" href="https://aads.com/campaigns/new/?source_id=2390940&source_type=ad_unit&partner=2390940">Advertise here</a>
+        </div>
+      </div>
+      
       {showWelcome && (
         <motion.div 
           className="mb-6 py-3 px-4 bg-gradient-to-r from-astro-purple/20 to-transparent border border-astro-purple/30 rounded-md"
