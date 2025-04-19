@@ -107,7 +107,16 @@ export default function CaptchaPage() {
       // Short cooldown between captchas
       setCooldown(5);
       
-      // Show ad during cooldown
+      // Create ad container and show ad during cooldown
+      const adContainer = document.createElement('div');
+      adContainer.id = 'ad-container';
+      adContainer.style.position = 'fixed';
+      adContainer.style.bottom = '20px';
+      adContainer.style.left = '50%';
+      adContainer.style.transform = 'translateX(-50%)';
+      adContainer.style.zIndex = '1000';
+      document.body.appendChild(adContainer);
+      
       const adScript = document.createElement('script');
       adScript.innerHTML = `atOptions = {
         'key' : 'a87e796789125ceeb0756b37655ef9a7',
@@ -116,11 +125,11 @@ export default function CaptchaPage() {
         'width' : 468,
         'params' : {}
       };`;
-      document.body.appendChild(adScript);
+      adContainer.appendChild(adScript);
       
       const invokeScript = document.createElement('script');
       invokeScript.src = '//www.highperformanceformat.com/a87e796789125ceeb0756b37655ef9a7/invoke.js';
-      document.body.appendChild(invokeScript);
+      adContainer.appendChild(invokeScript);
       
       // Reset for next captcha
       setShowCaptcha(false);
