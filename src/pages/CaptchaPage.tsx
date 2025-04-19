@@ -41,7 +41,7 @@ export default function CaptchaPage() {
 
   const generateNewCaptcha = () => {
     if (cooldown > 0) {
-      toast.error(`Please wait ${cooldown} seconds before generating a new captcha`);
+      toast.error(`Wait ${cooldown} seconds to continue earning`);
       return;
     }
     
@@ -105,7 +105,22 @@ export default function CaptchaPage() {
       }
       
       // Short cooldown between captchas
-      setCooldown(2);
+      setCooldown(5);
+      
+      // Show ad during cooldown
+      const adScript = document.createElement('script');
+      adScript.innerHTML = `atOptions = {
+        'key' : 'a87e796789125ceeb0756b37655ef9a7',
+        'format' : 'iframe',
+        'height' : 60,
+        'width' : 468,
+        'params' : {}
+      };`;
+      document.body.appendChild(adScript);
+      
+      const invokeScript = document.createElement('script');
+      invokeScript.src = '//www.highperformanceformat.com/a87e796789125ceeb0756b37655ef9a7/invoke.js';
+      document.body.appendChild(invokeScript);
       
       // Reset for next captcha
       setShowCaptcha(false);
