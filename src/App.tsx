@@ -36,6 +36,35 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   return children;
 };
 
+const GoogleAnalyticsScript = () => {
+  useEffect(() => {
+    // Google Analytics script
+    const script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-D3S59L88M5';
+    script.async = true;
+    document.head.appendChild(script);
+
+    // Initialize Google Analytics after the script loads
+    script.onload = () => {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-D3S59L88M5');
+    };
+
+    // Cleanup the script when the component unmounts
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
+  return null;
+};
+
+export default GoogleAnalyticsScript;
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
