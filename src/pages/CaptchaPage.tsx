@@ -108,12 +108,15 @@ export default function CaptchaPage() {
       setCooldown(5);
       
       // Create ad container inside the Captcha Challenge section
-      const cardContent = document.querySelector('.card-content');
+      const cardContent = document.querySelector('.card-content > div');
       const adContainer = document.createElement('div');
       adContainer.id = 'ad-container';
       adContainer.style.position = 'relative';
       adContainer.style.marginTop = '20px';
       adContainer.style.zIndex = '1000';
+      adContainer.style.width = '100%';
+      adContainer.style.display = 'flex';
+      adContainer.style.justifyContent = 'center';
       cardContent?.appendChild(adContainer);
       
       const adScript = document.createElement('script');
