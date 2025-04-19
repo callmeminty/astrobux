@@ -107,15 +107,14 @@ export default function CaptchaPage() {
       // Short cooldown between captchas
       setCooldown(5);
       
-      // Create ad container and show ad during cooldown
+      // Create ad container inside the Captcha Challenge section
+      const cardContent = document.querySelector('.card-content');
       const adContainer = document.createElement('div');
       adContainer.id = 'ad-container';
-      adContainer.style.position = 'fixed';
-      adContainer.style.bottom = '20px';
-      adContainer.style.left = '50%';
-      adContainer.style.transform = 'translateX(-50%)';
+      adContainer.style.position = 'relative';
+      adContainer.style.marginTop = '20px';
       adContainer.style.zIndex = '1000';
-      document.body.appendChild(adContainer);
+      cardContent?.appendChild(adContainer);
       
       const adScript = document.createElement('script');
       adScript.innerHTML = `atOptions = {
@@ -130,6 +129,11 @@ export default function CaptchaPage() {
       const invokeScript = document.createElement('script');
       invokeScript.src = '//www.highperformanceformat.com/a87e796789125ceeb0756b37655ef9a7/invoke.js';
       adContainer.appendChild(invokeScript);
+      
+      // Remove ad after 5 seconds
+      setTimeout(() => {
+        adContainer.remove();
+      }, 5000);
       
       // Reset for next captcha
       setShowCaptcha(false);
