@@ -3,13 +3,16 @@
   "builds": [
     {
       "src": "src/main.tsx",
-      "use": "@vercel/node"
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "src/main.tsx"
+      "dest": "dist/$1"
     }
   ],
   "env": {
