@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/main.tsx",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/main.tsx"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
