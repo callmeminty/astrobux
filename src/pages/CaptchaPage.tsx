@@ -159,36 +159,40 @@ export default function CaptchaPage() {
     }
   };
 
+  useEffect(() => {
+    const injectAd = (id: string, key: string) => {
+      const container = document.getElementById(id);
+      if (!container) return;
+
+      const configScript = document.createElement("script");
+      configScript.innerHTML = `
+        atOptions = {
+          'key' : '${key}',
+          'format' : 'iframe',
+          'height' : 600,
+          'width' : 160,
+          'params' : {}
+        };
+      `;
+      container.appendChild(configScript);
+
+      const loaderScript = document.createElement("script");
+      loaderScript.src = `//www.highperformanceformat.com/${key}/invoke.js`;
+      container.appendChild(loaderScript);
+    };
+
+    injectAd("left-ad", "ac58f331e8396ff864603da645c89fe3");
+    injectAd("right-ad", "ac58f331e8396ff864603da645c89fe3");
+  }, []);
+
   return (
     <MainLayout>
       <div className="fixed left-0 top-1/2 transform -translate-y-1/2 z-10">
-        <div id="frame" style={{width:'160px', height:'auto'}}>
-          <script type="text/javascript">
-            atOptions = {
-              'key' : 'ac58f331e8396ff864603da645c89fe3',
-              'format' : 'iframe',
-              'height' : 600,
-              'width' : 160,
-              'params' : {}
-            };
-          </script>
-          <script type="text/javascript" src="//www.highperformanceformat.com/ac58f331e8396ff864603da645c89fe3/invoke.js"></script>
-        </div>
+        <div id="left-ad" style={{ width: "160px", height: "600px" }}></div>
       </div>
       
       <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-10">
-        <div id="frame" style={{width:'160px', height:'auto'}}>
-          <script type="text/javascript">
-            atOptions = {
-              'key' : 'ac58f331e8396ff864603da645c89fe3',
-              'format' : 'iframe',
-              'height' : 600,
-              'width' : 160,
-              'params' : {}
-            };
-          </script>
-          <script type="text/javascript" src="//www.highperformanceformat.com/ac58f331e8396ff864603da645c89fe3/invoke.js"></script>
-        </div>
+        <div id="right-ad" style={{ width: "160px", height: "600px" }}></div>
       </div>
       
       <div className="max-w-3xl mx-auto">
